@@ -17,15 +17,14 @@ This repository includes the following:
   - Median target encoding (leak-free)
   - Label encoding with rare class grouping
     
--  Models:
+- Models:
   - XGBoost (GPU)
   - LightGBM (GPU)
   - Support Vector Regression (RBF Kernel)
   - AutoGluon FastAI Tabular Model
     
--  Stacked model:
+- Stacked model:
   - Ridge regression on out-of-fold predictions
 
----
 
 ## Directory Structure 
