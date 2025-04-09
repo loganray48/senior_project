@@ -52,6 +52,8 @@ cd Streamlit
 streamlit run app.py
 ```
 
+
+## Github Structure Directory 
 senior_project/
 
 ├── AutogluonModels/           # Output from AutoGluon training
