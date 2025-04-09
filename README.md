@@ -4,7 +4,7 @@
 
 This competition provides a synthetically-generated dataset of used cars, and the goal is to **predict the price of each car** based on various attributes.
 
-## 🔍 Goal
+## Goal
 
 Predict car prices from structured tabular data using modern machine learning models, stacking techniques, and feature engineering.
 
