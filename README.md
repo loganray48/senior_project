@@ -50,3 +50,15 @@ To run the app locally:
 ```bash
 cd Streamlit
 streamlit run app.py
+
+senior_project/
+├── AutogluonModels/           # Output from AutoGluon training
+├── Streamlit/                 # Streamlit dashboard application
+│   └── app.py
+├── catboost_info/             # CatBoost logs
+├── data/                      # Raw CSV and zipped datasets
+├── charts.py                  # Plotly and seaborn visualizations
+├── project.py                 # Main ML pipeline and modeling logic
+├── requirements.txt           # Environment dependencies
+└── README.md                  # Project documentation
+
