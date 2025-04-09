@@ -8,8 +8,6 @@ This senior project focuses on predicting used car prices using a synthetically 
 
 Predict car prices based on vehicle attributes such as brand, fuel type, mileage, model year, and transmission type. The project includes data cleaning, exploratory analysis, model training, evaluation, and dashboard development.
 
----
-
 ## Techniques Used
 
 ### Feature Engineering & Data Augmentation
@@ -32,8 +30,6 @@ Predict car prices based on vehicle attributes such as brand, fuel type, mileage
 - Support Vector Regressor (RBF kernel)
 - AutoGluon TabularPredictor (FastAI backend)
 - Ridge Regression for final ensemble stacking
-
----
 
 ## Streamlit Dashboard
 
