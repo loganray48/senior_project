@@ -50,6 +50,7 @@ To run the app locally:
 ```bash
 cd Streamlit
 streamlit run app.py
+```
 
 senior_project/
 ├── AutogluonModels/           # Output from AutoGluon training
