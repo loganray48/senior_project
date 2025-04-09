@@ -2,29 +2,51 @@
 
 ## Project Overview
 
-This competition provides a synthetically-generated dataset of used cars, and the goal is to **predict the price of each car** based on various attributes.
+This senior project focuses on predicting used car prices using a synthetically generated dataset provided by Kaggle's Tabular Playground Series. The goal is to build accurate regression models using structured tabular data enhanced with advanced feature engineering and model stacking techniques.
 
 ## Goal
 
-Predict car prices from structured tabular data using modern machine learning models, stacking techniques, and feature engineering.
+Predict car prices based on vehicle attributes such as brand, fuel type, mileage, model year, and transmission type. The project includes data cleaning, exploratory analysis, model training, evaluation, and dashboard development.
+
+---
 
 ## Techniques Used
 
-This repository includes the following:
+### Feature Engineering & Data Augmentation
 
-- Feature engineering:
-  - Outlier classification using `CatBoostClassifier`
-  - Median target encoding (leak-free)
-  - Label encoding with rare class grouping
-    
-- Models:
-  - XGBoost (GPU)
-  - LightGBM (GPU)
-  - Support Vector Regression (RBF Kernel)
-  - AutoGluon FastAI Tabular Model
-    
-- Stacked model:
-  - Ridge regression on out-of-fold predictions
+- **New columns created:**
+  - `car_age` (based on model year)
+  - `mileage_per_year` (adjusted for age)
+  - `is_luxury` (brand flag for luxury vehicles)
+  - `transmission_simplified` (collapsed A/T vs. M/T)
+- **Feature combinations:** including `brand_model`, `brand_mileage`, `brand_ext_col`, and `brand_int_col`
+- **Outlier classification:** Used IQR filtering and trained a `CatBoostClassifier` to flag extreme values
+- **Target encoding:** Leak-free median target encoding for categorical features
+- **Meta-features from models:** Out-of-fold predictions from XGBoost, LightGBM, and SVR were used as input features for a stacked model
+- **AutoML predictions:** Integrated features and results from AutoGluon’s FastAI model
 
+### Models
 
-## Directory Structure 
+- XGBoost Regressor (with GPU)
+- LightGBM Regressor (with GPU)
+- Support Vector Regressor (RBF kernel)
+- AutoGluon TabularPredictor (FastAI backend)
+- Ridge Regression for final ensemble stacking
+
+---
+
+## Streamlit Dashboard
+
+An interactive dashboard built with Streamlit includes:
+
+- Exploratory data visualizations
+- Data validation and preprocessing overview
+- Model performance metrics and comparisons
+- Feature importance charts
+- Predicted vs. actual price scatter plots
+
+To run the app locally:
+
+```bash
+cd Streamlit
+streamlit run app.py
