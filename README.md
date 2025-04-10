@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This senior project focuses on predicting used car prices using a synthetically generated dataset provided by Kaggle's Tabular Playground Series. The goal is to build accurate regression models using structured tabular data enhanced with advanced feature engineering and model stacking techniques.
+This project focuses on predicting used car prices using a synthetically generated dataset provided by Kaggle's Tabular Playground Series. The goal is to build accurate regression models using structured tabular data enhanced with advanced feature engineering and model stacking techniques.
 
 ## Goal
 
