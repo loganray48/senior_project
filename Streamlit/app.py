@@ -1,15 +1,11 @@
 import streamlit as st
-st.set_page_config(page_title="Car Price Regression Dashboard", layout="wide")
-
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 from xgboost import XGBRegressor
 
-# now you're good to go!
-
-
+st.set_page_config(page_title="Car Price Regression Dashboard", layout="wide")
 # Load Data
 @st.cache_data
 def load_data():
@@ -44,18 +40,15 @@ with tab1:
     st.markdown("""
     This project is part of my senior project where I participated in the Kaggle 2024 Tabular Playground Series
     to predict used car prices. The dataset includes synthetically generated records with attributes such as brand,
-    mileage, fuel type, engine configuration, and more. 
-
-    The objective is to build a regression model that predicts the price of a used car and explore how various features
-    affect pricing. Multiple machine learning models and ensemble techniques were tested, along with extensive feature
-    engineering.
+    mileage, fuel type, engine configuration, and more. The objective is to build a regression model that predicts the 
+    price of a used car and explore how various features affect pricing. Multiple machine learning models and ensemble 
+    techniques were tested, along with extensive feature engineering.
     """)
 
     st.markdown("## Feature Engineering & Data Augmentation")
 
     # Subsection 1: New Columns
     st.markdown("### New Columns Created")
-
     st.markdown("""
     To provide more predictive power to the model, several new features were derived from the original dataset:
 
@@ -73,12 +66,10 @@ with tab1:
     """)
 
     st.markdown("#### Preview of New Columns")
-
     st.dataframe(train.head(5))
 
     # Subsection 2: Other Augmentations
     st.markdown("### Additional Data Augmentations")
-
     st.markdown("""
     Alongside feature creation, we also performed several enhancements to clean and prepare the dataset:
 
@@ -146,17 +137,13 @@ with tab2:
 
 #Figure 4
     st.subheader("4. Price by Fuel Type")
-
     # Filter prices under 100K
     filtered = train[train["price"] <= 100000].copy()
-
     # Clean and filter valid fuel types
     valid_fuels = [
         "Gasoline", "E85 Flex Fuel", "Hybrid", "Diesel", "Plug-In Hybrid", "Unknown", "not supported"
     ]
     filtered = filtered[filtered["fuel_type"].isin(valid_fuels)]
-
-    # Clean up naming
     filtered["fuel_type"] = filtered["fuel_type"].replace({
         "not supported": "Other",
         "Unknown": "Other"
@@ -180,11 +167,7 @@ with tab2:
 
 #Figure 5
     st.subheader("5. Transmission Type Distribution")
-
-    # Get Top 5 transmission types
     top_transmissions = train["transmission_simplified"].value_counts().head(5).index
-
-    # Filter to only those 5 types
     filtered = train[train["transmission_simplified"].isin(top_transmissions)]
 
     fig5 = px.histogram(
@@ -192,16 +175,13 @@ with tab2:
         x="transmission_simplified",
         title="Top 5 Transmission Types by Count"
     )
-
     fig5.update_xaxes(title="Transmission Type", categoryorder="total descending")
     fig5.update_yaxes(title="Count")
-
     st.plotly_chart(fig5, use_container_width=True)
 
     #Figure 6
     st.subheader("6. Car Price vs. Miles Driven")
-    # Filter and sample data
-    # filtered = train[(train["price"] <= 100000) & (train["milage"] <= 200000)]
+    # Filter and sample data]
     sampled = filtered.sample(n=2000, random_state=42)
     # Create scatter plot with trendline
     fig6 = px.scatter(
@@ -227,7 +207,7 @@ with tab2:
 with tab3:
     st.header("Model Results")
 
-    st.subheader("📊 Model Performance Summary")
+    st.subheader("Model Performance Summary")
     st.markdown("""
     We trained multiple machine learning models using 5-fold cross-validation and stacked them for final predictions:
 
@@ -248,27 +228,7 @@ with tab3:
     score_df = pd.DataFrame(model_scores)
     st.dataframe(score_df)
 
-    st.subheader("🎯 Predicted vs. Actual Price (Validation)")
-    # Placeholder data for visual - replace with actual y_true/y_pred if available
-    import numpy as np
-    np.random.seed(42)
-    y_true = np.random.randint(10000, 100000, 500)
-    y_pred = y_true + np.random.normal(0, 5000, 500)
-
-    fig_val = px.scatter(
-        x=y_true,
-        y=y_pred,
-        labels={"x": "Actual Price", "y": "Predicted Price"},
-        title="Validation Set: Actual vs. Predicted",
-        trendline="ols",
-        opacity=0.6
-    )
-    fig_val.update_traces(marker=dict(color="MediumSlateBlue"))
-    fig_val.update_xaxes(tickformat="$,", title="Actual Price")
-    fig_val.update_yaxes(tickformat="$,", title="Predicted Price")
-    st.plotly_chart(fig_val, use_container_width=True)
-
-    st.subheader("📈 Top 20 Feature Importances (XGBoost Sampled)")
+    st.subheader("Top 20 Feature Importances (XGBoost Sampled)")
     sampled = train.sample(frac=0.1, random_state=42)
     y = sampled['price']
     X = sampled.drop(columns=['price'])
